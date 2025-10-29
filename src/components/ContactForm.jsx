@@ -31,25 +31,26 @@ ${formData.message}
     `.trim();
 
     try {
-      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      // Call the API endpoint (works on Vercel/Netlify)
+      const response = await fetch('/api/send-telegram', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
           text: message,
-          parse_mode: 'HTML',
-        }),
+          bot_token: TELEGRAM_BOT_TOKEN,
+          chat_id: TELEGRAM_CHAT_ID
+        })
       });
 
-      const data = await response.json();
-      console.log('Telegram API Response:', data);
+      const result = await response.json();
+      console.log('Telegram Response:', result);
       
-      if (data.ok) {
+      if (result.success) {
         setSubmitStatus({ type: 'success', message: "Message sent successfully! We'll get back to you soon." });
       } else {
-        throw new Error(data.description || 'Failed to send message');
+        throw new Error(result.error || 'Failed to send message');
       }
       setFormData({
         name: '',
