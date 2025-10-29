@@ -34,15 +34,15 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/#models" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium">
+            <a href="#models" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium">
               Models
-            </Link>
-            <Link to="/#services" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium">
+            </a>
+            <a href="#services" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium">
               Services
-            </Link>
-            <Link to="/#about" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium">
+            </a>
+            <a href="#about" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium">
               About
-            </Link>
+            </a>
             <button className="btn-primary">
               Book Test Drive
             </button>
@@ -85,15 +85,15 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             className="md:hidden mt-4 pb-4 space-y-4 glass-effect rounded-lg p-6"
           >
-            <Link to="/#models" className="block text-white hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMobileMenuOpen(false)}>
+            <a href="#models" className="block text-white hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMobileMenuOpen(false)}>
               Models
-            </Link>
-            <Link to="/#services" className="block text-white hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMobileMenuOpen(false)}>
+            </a>
+            <a href="#services" className="block text-white hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMobileMenuOpen(false)}>
               Services
-            </Link>
-            <Link to="/#about" className="block text-white hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMobileMenuOpen(false)}>
+            </a>
+            <a href="#about" className="block text-white hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMobileMenuOpen(false)}>
               About
-            </Link>
+            </a>
             <button className="btn-primary w-full mt-4">
               Book Test Drive
             </button>
