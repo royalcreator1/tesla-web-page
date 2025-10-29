@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import Modal from './Modal';
+import BookTestDriveForm from './BookTestDriveForm';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isBookDriveModalOpen, setIsBookDriveModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +46,7 @@ const Navbar = () => {
             <a href="#about" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium">
               About
             </a>
-            <button className="btn-primary">
+            <button onClick={() => setIsBookDriveModalOpen(true)} className="btn-primary">
               Book Test Drive
             </button>
           </div>
@@ -94,12 +97,21 @@ const Navbar = () => {
             <a href="#about" className="block text-white hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMobileMenuOpen(false)}>
               About
             </a>
-            <button className="btn-primary w-full mt-4">
+            <button onClick={() => { setIsBookDriveModalOpen(true); setIsMobileMenuOpen(false); }} className="btn-primary w-full mt-4">
               Book Test Drive
             </button>
           </motion.div>
         )}
       </div>
+
+      {/* Book Test Drive Modal */}
+      <Modal
+        isOpen={isBookDriveModalOpen}
+        onClose={() => setIsBookDriveModalOpen(false)}
+        title="Book a Test Drive"
+      >
+        <BookTestDriveForm />
+      </Modal>
     </motion.nav>
   );
 };

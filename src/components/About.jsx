@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import Modal from './Modal';
+import ContactForm from './ContactForm';
 
 const About = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <section id="about" className="py-20 px-6 bg-black">
       <div className="max-w-7xl mx-auto">
@@ -33,9 +38,9 @@ const About = () => {
                 Explore Our Models
                 <ArrowRight className="w-5 h-5" />
               </a>
-              <a href="#contact" className="btn-outline">
+              <button onClick={() => setIsContactModalOpen(true)} className="btn-outline">
                 Contact Us
-              </a>
+              </button>
             </div>
           </motion.div>
 
@@ -73,6 +78,15 @@ const About = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Contact Modal */}
+      <Modal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Get in Touch"
+      >
+        <ContactForm />
+      </Modal>
     </section>
   );
 };
