@@ -70,15 +70,11 @@ ${formData.message}
     } catch (error) {
       console.error('Error sending message:', error);
       
-      // If local development, show helpful message
-      if (error.message.includes('fetch')) {
-        setSubmitStatus({ 
-          type: 'error', 
-          message: '💡 Note: Deploy to Vercel to enable Telegram. For local testing, data is logged to console (F12).' 
-        });
-      } else {
-        setSubmitStatus({ type: 'error', message: `Failed to send message: ${error.message}. Please try again.` });
-      }
+      // Show the actual error
+      setSubmitStatus({ 
+        type: 'error', 
+        message: `Error: ${error.message}. Check browser console (F12) for details.` 
+      });
     } finally {
       setIsSubmitting(false);
     }
