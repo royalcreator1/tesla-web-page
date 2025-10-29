@@ -15,8 +15,9 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN';
-    const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID';
+    const TELEGRAM_BOT_TOKEN = '8293920282:AAHFV6viP8NtW_TgdmmhAlxRXEsl6giv0lo';
+    const TELEGRAM_CHAT_ID = '1315375452';
+
     
     const message = `
 📧 New Contact Form Submission
@@ -42,7 +43,7 @@ ${formData.message}
         }),
       });
       
-      setSubmitStatus({ type: 'success', message: 'Message sent successfully! We'll get back to you soon.' });
+      setSubmitStatus({ type: 'success', message: "Message sent successfully! We'll get back to you soon." });
       setFormData({
         name: '',
         email: '',

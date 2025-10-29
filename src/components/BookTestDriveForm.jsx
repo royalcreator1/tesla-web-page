@@ -19,8 +19,8 @@ const BookTestDriveForm = () => {
     setIsSubmitting(true);
     
     // Replace with your Telegram bot details
-    const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN';
-    const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID';
+    const TELEGRAM_BOT_TOKEN = '8293920282:AAHFV6viP8NtW_TgdmmhAlxRXEsl6giv0lo';
+    const TELEGRAM_CHAT_ID = '1315375452';
     
     const message = `
 📅 New Test Drive Booking Request
@@ -172,7 +172,7 @@ const BookTestDriveForm = () => {
             required
             value={formData.preferredDate}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-black border border-white/20 rounded-lg focus:border-white/50 focus:outline-none text-white"
+            className="w-full px-4 py-3 bg-black border border-white/20 rounded-lg focus:border-white/50 focus:outline-none text-white [color-scheme:light] [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert"
           />
         </div>
 
@@ -187,7 +187,7 @@ const BookTestDriveForm = () => {
             required
             value={formData.preferredTime}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-black border border-white/20 rounded-lg focus:border-white/50 focus:outline-none text-white"
+            className="w-full px-4 py-3 bg-black border border-white/20 rounded-lg focus:border-white/50 focus:outline-none text-white [color-scheme:light] [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert"
           />
         </div>
       </div>
