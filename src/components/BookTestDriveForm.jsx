@@ -35,8 +35,8 @@ const BookTestDriveForm = () => {
     `.trim();
 
     try {
-      // Call the API endpoint (works on Vercel/Netlify)
-      const response = await fetch('/api/send-telegram', {
+      // Call the proxy server on port 3004
+      const response = await fetch('http://localhost:3004/api/send-telegram', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
