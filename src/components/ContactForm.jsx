@@ -31,7 +31,7 @@ ${formData.message}
     `.trim();
 
     try {
-      await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,8 +42,15 @@ ${formData.message}
           parse_mode: 'HTML',
         }),
       });
+
+      const data = await response.json();
+      console.log('Telegram API Response:', data);
       
-      setSubmitStatus({ type: 'success', message: "Message sent successfully! We'll get back to you soon." });
+      if (data.ok) {
+        setSubmitStatus({ type: 'success', message: "Message sent successfully! We'll get back to you soon." });
+      } else {
+        throw new Error(data.description || 'Failed to send message');
+      }
       setFormData({
         name: '',
         email: '',
@@ -55,7 +62,8 @@ ${formData.message}
         setSubmitStatus(null);
       }, 3000);
     } catch (error) {
-      setSubmitStatus({ type: 'error', message: 'Failed to send message. Please try again.' });
+      console.error('Error sending message:', error);
+      setSubmitStatus({ type: 'error', message: `Failed to send message: ${error.message}. Please try again.` });
     } finally {
       setIsSubmitting(false);
     }

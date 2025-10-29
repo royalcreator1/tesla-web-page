@@ -35,7 +35,7 @@ const BookTestDriveForm = () => {
     `.trim();
 
     try {
-      await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,8 +46,15 @@ const BookTestDriveForm = () => {
           parse_mode: 'HTML',
         }),
       });
+
+      const data = await response.json();
+      console.log('Telegram API Response:', data);
       
-      setSubmitStatus({ type: 'success', message: 'Booking request sent successfully!' });
+      if (data.ok) {
+        setSubmitStatus({ type: 'success', message: 'Booking request sent successfully!' });
+      } else {
+        throw new Error(data.description || 'Failed to send message');
+      }
       setFormData({
         name: '',
         email: '',
@@ -62,7 +69,8 @@ const BookTestDriveForm = () => {
         setSubmitStatus(null);
       }, 3000);
     } catch (error) {
-      setSubmitStatus({ type: 'error', message: 'Failed to send request. Please try again.' });
+      console.error('Error sending message:', error);
+      setSubmitStatus({ type: 'error', message: `Failed to send request: ${error.message}. Please try again.` });
     } finally {
       setIsSubmitting(false);
     }
