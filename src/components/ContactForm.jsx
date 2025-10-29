@@ -44,6 +44,11 @@ ${formData.message}
         })
       });
 
+      // Check if response is OK
+      if (!response.ok) {
+        throw new Error(`API returned ${response.status}`);
+      }
+
       const result = await response.json();
       console.log('Telegram Response:', result);
       
